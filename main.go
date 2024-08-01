@@ -1,22 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/radikaledward1/golang-rest-api-postgresql/database"
+	"github.com/radikaledward1/golang-rest-api-postgresql/routes"
 )
-
-func Welcome(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to my Go REST API !!!")
-}
 
 func main() {
 	//fmt.Println("Hello World")
+
+	database.DbConnection()
+
 	router := mux.NewRouter().StrictSlash(true)
-
-	router.HandleFunc("/", Welcome)
-
+	routes.RoutesRegister(router)
 	log.Fatal(http.ListenAndServe(":3000", router))
 }
