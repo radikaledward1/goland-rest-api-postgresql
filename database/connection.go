@@ -3,6 +3,7 @@ package database
 import (
 	"log"
 
+	"github.com/radikaledward1/golang-rest-api-postgresql/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -17,6 +18,11 @@ func DbConnection() {
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Printf("Connection Success wuth PostgreSQL")
+		log.Printf("Connection Success wuth PostgreSQL 👍")
+
+		DB.AutoMigrate(models.User{})
+		DB.AutoMigrate(models.Task{})
+
+		log.Printf("All Models Synchronized 🙌")
 	}
 }
