@@ -9,5 +9,6 @@ func RoutesRegister(router *mux.Router) {
 	router.HandleFunc("/", services.Welcome).Methods("GET")
 	router.HandleFunc("/users", services.GetUsersHandler).Methods("GET")
 	router.HandleFunc("/users/add", services.AddUsersHandler).Methods("POST")
-	router.HandleFunc("/users/delete/{id}", services.DeleteUsersHandler).Methods("POST")
+	router.HandleFunc("/users/{id}", services.GetUserHandler).Methods("GET")
+	router.HandleFunc("/users/delete/{id}", services.DeleteUsersHandler).Methods("DELETE")
 }
